@@ -20,3 +20,9 @@
 .App-link {
   color: #09d3ac;
 }
+
+.title {
+  background-color: #034C3C;
+  padding: .05em;
+  color: white;
+}
