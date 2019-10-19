@@ -6,20 +6,32 @@ class Map extends Component {
         super(props);
         this.state = {
                 viewport: {
-                    width: 400,
-                    height: 400,
-                    latitude: 37.7577,
-                    longitude: -122.4376,
-                    zoom: 8
-                }
+                    width: window.innerWidth,
+                    height: 600,
+                    latitude: 40.7128,
+                    longitude: -74.0060,
+                    zoom: 11
+                },
+                mounted: false 
         };
+        this.handleViewportChange = this.handleViewportChange.bind(this)
+    }
+    componentDidMount () {
+        this.setState({ mounted: true })
+      }
+    handleViewportChange(viewport){
+        this.setState({viewport})
     }
     render() {
         return (
             <div className="map">
                 <ReactMapGL
                     {...this.state.viewport}
-                    onViewportChange={(viewport) => this.setState({viewport})}
+                    onViewportChange={(viewport) => {
+                        if (this.state.mounted){
+                            this.handleViewportChange(viewport)
+                        }
+                    }}
                 />
             </div>     
         );
